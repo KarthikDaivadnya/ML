@@ -103,9 +103,10 @@ if st.button("🔍 Predict Rock or Mine"):
     else:
         st.success("💣 The object is predicted to be a **Mine**.")
 
-    # Similarity check
-    rock_dist = np.linalg.norm(input_array - rock_mean)
-    mine_dist = np.linalg.norm(input_array - mine_mean)
+    # ✅ FIXED: Convert mean Series to NumPy arrays before subtraction
+    rock_dist = np.linalg.norm(input_array - rock_mean.values)
+    mine_dist = np.linalg.norm(input_array - mine_mean.values)
+
     st.write(f"📏 Distance to Rock mean: `{rock_dist:.2f}`")
     st.write(f"📏 Distance to Mine mean: `{mine_dist:.2f}`")
 
